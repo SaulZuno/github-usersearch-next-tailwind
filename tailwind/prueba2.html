@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi primer sitio web con tailwind</title>
+    <script src="https://cdn.tailwindcss.com/"></script>"
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <button class="bg-blue-500  hover:bg-red-700 text-white font-bold py-2 rounded-lg px-4">
+        Mi botón
+    </button>
+    <div>
+        <h1>Esto es un h1</h1>
+        <h2>Esto es un h2</h2>
+        <h3>Esto es un h3</h3>
+        <h4>Esto es un h4</h4>
+        <h5>Esto es un h5</h5>
+        <h6>Esto es un h6</h6>
+    </div>
+    <div class="m-5 border p-5">
+        <p class="text-xl sm:text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem doloremque similique fugit laborum dolorem quasi eius non minima culpa voluptatem quas perferendis, expedita ad sunt ipsa eveniet ea distinctio! Tenetur?</p>
+    </div>
+</body>
+</html>
