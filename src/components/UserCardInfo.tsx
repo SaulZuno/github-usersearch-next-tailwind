@@ -1,47 +1,68 @@
-import GithubLogo from "@/components/icons/GithubIcon";
+import GithubIcon from "@/components/icons/GithubIcon";
+import LocationIcon from "@/components/icons/LocationIcon"
+import LinkIcon from "@/components/icons/LinkIcon"
+import TwitterIcon from "@/components/icons/TwitterIcon"
+import BuildingIcon from "@/components/icons/BuildingIcon"
+import { User } from "@/interfaces/user";
 
-const UserCardInfo = () => {
+interface Props {
+  user: User;
+}
+
+const UserCardInfo = ({user}: Props) => {
   return (
-    <article className='p-2 grid-areas rounded-xl bg-blue-900 text-white'>
-      <div className="grid section-logo h-20 w-20 place-content-center rounded-full bg-gray-200 p-1">
-        <GithubLogo className="relative top-2 h-full w-full" />
+    <article className='p-4 grid-areas rounded-xl bg-blue-900 text-white'>
+      <div className="grid section-logo h-24 w-24 place-content-center rounded-full bg-gray-200 p-1 lg:mx-auto mr-3">
+        <GithubIcon className="relative top-2 h-full w-full" />
       </div>
       <div className="section-title">
-        <h2>The Octocat</h2>
-        <p>@octocat</p>
+        <h2 className="text-3xl font-bold">{user?.name}</h2>
+        <p>@{user?.login}</p>
       </div>
-      <p className="section-date">Joined 25 Jan 2011</p>
-      <p className="section-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti dolore harum in excepturi itaque, odit reprehenderit porro aut tenetur nemo maxime eum libero ducimus tempora tempore repellendus culpa quae. Eaque.</p>
-      <div>
-        <article className="section-number flex justify-around bg-blue-950">
+      <p className="section-date lg:text-right"> {new Date(user?.created_at || "").toLocaleDateString("es", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })}</p>
+      <p className="section-description mt-8 leading-loose">{user?.bio || "Sin user bio"}</p>
+      <div className="section-number mt-4 flex justify-around bg-blue-950 p-8 rounded-xl text-center">
+        <article>
           <p>Repos</p>
-          <p>8</p>
+          <p className="font-bold text-xl">{user?.public_repos}</p>
         </article>
         <article>
           <p>Followers</p>
-          <p>3938</p>
+          <p className="font-bold text-xl">{user.followers}</p>
         </article>
         <article>
           <p>Following</p>
-          <p>9</p>
+          <p className="font-bold text-xl">{user.following}</p>
         </article>
       </div>
-      <div className="section-social md:grid md:grid-cols-2">
-        <article>
-          <i>Icono</i>
-          <p>San Francisco</p>
+      <div className="section-social md:grid md:grid-cols-2 mt-4 space-y-3">
+        <article className="flex space-x-2">
+          <i>
+            <LocationIcon className="fill-white h-full w-full" width={"1rem"}/>
+          </i>
+          <span>{user?.location || "No information"}</span>
         </article>
-        <article>
-          <i>Icono</i>
-          <p>San Francisco</p>
+        <article className="flex space-x-2">
+          <i>
+            <LinkIcon className="fill-white h-full w-full" width={"1rem"} />
+          </i>
+          <a href={user?.blog || ""}>{user?.blog || "No information"}</a>
         </article>
-        <article>
-          <i>Icono</i>
-          <p>San Francisco</p>
+        <article className="flex space-x-2">
+          <i>
+            <TwitterIcon className="fill-white h-full w-full" width={"1rem"} />
+          </i>
+          <a href={`https://twiter.com${user?.twitter_username || ""}`}>{user.twitter_username || "No information"}</a>
         </article>
-        <article>
-          <i>Icono</i>
-          <p>San Francisco</p>
+        <article className="flex space-x-2">
+          <i>
+            <BuildingIcon className="fill-white h-full w-full" width={"1rem"}/>
+          </i>
+          <span>{user?.company || "No information"}</span>
         </article>
       </div>  
     </article>
